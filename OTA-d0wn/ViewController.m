@@ -193,7 +193,7 @@
     NSTask *task = [[NSTask alloc] init];
     
     
-    NSString *str=[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@""];
+    NSString *str=[[NSBundle mainBundle] resourcePath];
     
     NSLog(@"stuff path: %@", str);
     
@@ -203,11 +203,11 @@
     
     
  
-    NSString *pwned = [NSString stringWithFormat:@"%@/pwnediBSS", [[NSBundle mainBundle]resourcePath]];
-    NSString *unzip = [NSString stringWithFormat:@" && ./xpwntool `unzip -j ./custom_firmware.ipsw '%@/Firmware/dfu/iBSS*' | awk '/inflating/{print $2}'`", [[NSBundle mainBundle]resourcePath]];
+    NSString *pwned = [NSString stringWithFormat:@"pwnediBSS"];
+    NSString *unzip = [NSString stringWithFormat:@" ./xpwntool `unzip -j custom_firmware.ipsw 'Firmware/dfu/iBSS*' | awk '/inflating/{print $2}'`"];
     NSLog(@"./xpwntool %@ %@", unzip, pwned);
     
-    [task setLaunchPath:@"/usr/bin/cd"];
+    [task setLaunchPath:str];
     task.arguments  = @[[[NSBundle mainBundle]resourcePath], unzip, pwned];
     NSLog(@"all arguments: %@", [task arguments]);
     NSPipe * out = [NSPipe pipe];
