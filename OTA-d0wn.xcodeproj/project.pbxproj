@@ -18,7 +18,6 @@
 		8AFF99DA1B46F6EC00A360E4 /* FirmwareBundles in Resources */ = {isa = PBXBuildFile; fileRef = 8AFF99D41B46F6EC00A360E4 /* FirmwareBundles */; };
 		8AFF99DB1B46F6EC00A360E4 /* idevicerestore in Resources */ = {isa = PBXBuildFile; fileRef = 8AFF99D51B46F6EC00A360E4 /* idevicerestore */; };
 		8AFF99DC1B46F6EC00A360E4 /* ipsw in Resources */ = {isa = PBXBuildFile; fileRef = 8AFF99D61B46F6EC00A360E4 /* ipsw */; };
-		8AFF99DD1B46F6EC00A360E4 /* shsh in Resources */ = {isa = PBXBuildFile; fileRef = 8AFF99D71B46F6EC00A360E4 /* shsh */; };
 		8AFF99DE1B46F6EC00A360E4 /* version.xml in Resources */ = {isa = PBXBuildFile; fileRef = 8AFF99D81B46F6EC00A360E4 /* version.xml */; };
 		8AFF99DF1B46F6EC00A360E4 /* xpwntool in Resources */ = {isa = PBXBuildFile; fileRef = 8AFF99D91B46F6EC00A360E4 /* xpwntool */; };
 /* End PBXBuildFile section */
@@ -52,7 +51,6 @@
 		8AFF99D41B46F6EC00A360E4 /* FirmwareBundles */ = {isa = PBXFileReference; lastKnownFileType = folder; path = FirmwareBundles; sourceTree = "<group>"; };
 		8AFF99D51B46F6EC00A360E4 /* idevicerestore */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = idevicerestore; sourceTree = "<group>"; };
 		8AFF99D61B46F6EC00A360E4 /* ipsw */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = ipsw; sourceTree = "<group>"; };
-		8AFF99D71B46F6EC00A360E4 /* shsh */ = {isa = PBXFileReference; lastKnownFileType = folder; path = shsh; sourceTree = "<group>"; };
 		8AFF99D81B46F6EC00A360E4 /* version.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = version.xml; sourceTree = "<group>"; };
 		8AFF99D91B46F6EC00A360E4 /* xpwntool */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = xpwntool; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -151,7 +149,6 @@
 				8AFF99D41B46F6EC00A360E4 /* FirmwareBundles */,
 				8AFF99D51B46F6EC00A360E4 /* idevicerestore */,
 				8AFF99D61B46F6EC00A360E4 /* ipsw */,
-				8AFF99D71B46F6EC00A360E4 /* shsh */,
 				8AFF99D81B46F6EC00A360E4 /* version.xml */,
 				8AFF99D91B46F6EC00A360E4 /* xpwntool */,
 			);
@@ -244,7 +241,6 @@
 				8A01A60D1B4872BF0010F111 /* movebss.sh in Resources */,
 				8AFF99DF1B46F6EC00A360E4 /* xpwntool in Resources */,
 				8AFF99DB1B46F6EC00A360E4 /* idevicerestore in Resources */,
-				8AFF99DD1B46F6EC00A360E4 /* shsh in Resources */,
 				8AFF99DE1B46F6EC00A360E4 /* version.xml in Resources */,
 				8AFF99DC1B46F6EC00A360E4 /* ipsw in Resources */,
 			);
