@@ -207,8 +207,8 @@
     NSString *cd = [NSString stringWithFormat:@"cd %@", [[NSBundle mainBundle] resourcePath]];
     
     
-    [task setLaunchPath:@"/bin/sh"];
-    task.arguments  = @[ @"ls", @" && ./xpwntool `unzip -j ./custom_firmware.ipsw 'Firmware/dfu/iBSS*' | awk '/inflating/{print $2}'`",@"pwnediBSS"];
+    [task setLaunchPath:@"/bin/bash"];
+    task.arguments  = @[ @"-c" @"ls", @" && ./xpwntool `unzip -j ./custom_firmware.ipsw 'Firmware/dfu/iBSS*' | awk '/inflating/{print $2}'`",@"pwnediBSS"];
     
     for (NSString *validArgument in [task arguments]) {
         NSLog(validArgument);
