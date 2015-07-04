@@ -280,13 +280,12 @@
         }
     }
     
-    
 
 
     iBSS = [NSString stringWithFormat:@"%@/bss/Firmware/DFU/%@", [[NSBundle mainBundle]resourcePath], iBSS];
         NSLog(@"iBSS path: %@", iBSS);
-    NSString *toolPath = [NSString stringWithFormat:@"%@/xpwntool", [[NSBundle mainBundle]resourcePath]];
-    NSString *fullArgument = [NSString stringWithFormat:@"\"cd / && %@ %@ %@/pwnediBSS\"", toolPath, iBSS, [[NSBundle mainBundle]resourcePath]];
+
+
     
     NSString *scriptPath = [NSString stringWithFormat:@"%@/movebss.sh", [[NSBundle mainBundle]resourcePath]];
     
