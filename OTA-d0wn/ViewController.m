@@ -89,8 +89,8 @@
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
           _progess.floatValue = 1;
         
-     //   [task launch];
-        [self fetchBlobs];
+        [task launch];
+  
 
         NSFileHandle * read = [out fileHandleForReading];
         
@@ -103,7 +103,7 @@
             
             
         }else{
-            
+            [self fetchBlobs];
             
         }
 
@@ -379,7 +379,7 @@
             [whatAreWeDoing stopAnimation:nil];
             whatAreWeDoing.hidden = YES;
             statusLabel.stringValue = @"Done";
-            self.downgradeButton.stringValue = @"Restart";
+           
             
             
         }
