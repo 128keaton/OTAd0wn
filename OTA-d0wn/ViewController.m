@@ -87,7 +87,7 @@
     downgradeButton.enabled = NO;
     
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-        
+          _progess.floatValue = 1;
         
         [task launch];
         NSFileHandle * read = [out fileHandleForReading];
@@ -102,7 +102,7 @@
             
         }else{
             [self fetchBlobs];
-           _progess.floatValue = 1;
+         
             
         }
 
@@ -126,7 +126,7 @@
     
     NSString *str=[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"idevicerestore"];
     
-    
+       _progess.floatValue = 2;
     
     // [task setCurrentDirectoryPath:[NSString stringWithFormat:@"../..%@/", [defaults objectForKey:@"tool"]]];
     NSLog(@"working dir: %@", [task currentDirectoryPath] );
@@ -181,7 +181,7 @@
         }else{
             NSLog(@"making iBSS");
             downgradeButton.enabled = YES;
-              _progess.floatValue = 2;
+           
                     [self makeiBSS];
         }
     }
@@ -203,13 +203,16 @@
     
     
  
-    NSString *pwned = [NSString stringWithFormat:@"pwnediBSS"];
-    NSString *unzip = [NSString stringWithFormat:@" ./xpwntool `unzip -j custom_firmware.ipsw 'Firmware/dfu/iBSS*' | awk '/inflating/{print $2}'`"];
-    NSLog(@"./xpwntool %@ %@", unzip, pwned);
+
+    NSString *cd = [NSString stringWithFormat:@"cd %@", [[NSBundle mainBundle] resourcePath]];
     
-    [task setLaunchPath:str];
-    task.arguments  = @[[[NSBundle mainBundle]resourcePath], unzip, pwned];
-    NSLog(@"all arguments: %@", [task arguments]);
+    
+    [task setLaunchPath:@"/bin/sh"];
+    task.arguments  = @[ @"ls", @" && ./xpwntool `unzip -j ./custom_firmware.ipsw 'Firmware/dfu/iBSS*' | awk '/inflating/{print $2}'`",@"pwnediBSS"];
+    
+    for (NSString *validArgument in [task arguments]) {
+        NSLog(validArgument);
+    }
     NSPipe * out = [NSPipe pipe];
     [task setStandardOutput:out];
     
