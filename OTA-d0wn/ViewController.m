@@ -92,9 +92,9 @@
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
           _progess.floatValue = 1;
         
-       // [task launch];
+        [task launch];
   
-        [self fetchBlobs];
+    
         
         NSFileHandle * read = [out fileHandleForReading];
         
@@ -107,7 +107,7 @@
             
             
         }else{
-   
+     [self fetchBlobs];
         }
 
    
