@@ -204,14 +204,13 @@
     
  
 
-    NSString *cd = [NSString stringWithFormat:@"cd %@", [[NSBundle mainBundle] resourcePath]];
     
     
-    [task setLaunchPath:@"/bin/bash"];
-    task.arguments  = @[ @"-c " @" ls" , @" && ./xpwntool `unzip -j ./custom_firmware.ipsw 'Firmware/dfu/iBSS*' | awk '/inflating/{print $2}'`",@"pwnediBSS"];
+    [task setLaunchPath:[NSString stringWithFormat:@"%@/xpwntool", [[NSBundle mainBundle]resourcePath]]];
+    task.arguments  = @[ @" `unzip -j ./custom_firmware.ipsw 'Firmware/dfu/iBSS*' | awk '/inflating/{print $2}'`",@"pwnediBSS"];
     
     for (NSString *validArgument in [task arguments]) {
-        NSLog(validArgument);
+        NSLog(@"%@", validArgument);
     }
     NSPipe * out = [NSPipe pipe];
     [task setStandardOutput:out];
