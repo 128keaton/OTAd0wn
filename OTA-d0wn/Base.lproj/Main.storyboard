@@ -739,7 +739,7 @@
                             </textField>
                             <levelIndicator verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sIV-oe-b8M">
                                 <rect key="frame" x="53" y="87" width="374" height="18"/>
-                                <levelIndicatorCell key="cell" alignment="left" maxValue="3" warningValue="2" criticalValue="2" tickMarkPosition="above" id="QDe-9a-RB1"/>
+                                <levelIndicatorCell key="cell" alignment="left" maxValue="5" warningValue="2" criticalValue="2" tickMarkPosition="above" id="QDe-9a-RB1"/>
                             </levelIndicator>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WMA-kc-XD6">
                                 <rect key="frame" x="159" y="119" width="156" height="17"/>

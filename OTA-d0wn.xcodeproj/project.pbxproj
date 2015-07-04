@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8A01A60D1B4872BF0010F111 /* movebss.sh in Resources */ = {isa = PBXBuildFile; fileRef = 8A01A60C1B4872BF0010F111 /* movebss.sh */; };
 		8AFF99AC1B463D0700A360E4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFF99AB1B463D0700A360E4 /* AppDelegate.m */; };
 		8AFF99AE1B463D0700A360E4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFF99AD1B463D0700A360E4 /* main.m */; };
 		8AFF99B11B463D0700A360E4 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFF99B01B463D0700A360E4 /* ViewController.m */; };
@@ -33,6 +34,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8A01A60C1B4872BF0010F111 /* movebss.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = movebss.sh; sourceTree = "<group>"; };
 		8AFF99A51B463D0700A360E4 /* OTA-d0wn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "OTA-d0wn.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8AFF99A91B463D0700A360E4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8AFF99AA1B463D0700A360E4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 				8AFF99B21B463D0700A360E4 /* Images.xcassets */,
 				8AFF99B41B463D0700A360E4 /* Main.storyboard */,
 				8AFF99A81B463D0700A360E4 /* Supporting Files */,
+				8A01A60C1B4872BF0010F111 /* movebss.sh */,
 			);
 			path = "OTA-d0wn";
 			sourceTree = "<group>";
@@ -238,6 +241,7 @@
 				8AFF99B31B463D0700A360E4 /* Images.xcassets in Resources */,
 				8AFF99B61B463D0700A360E4 /* Main.storyboard in Resources */,
 				8AFF99DA1B46F6EC00A360E4 /* FirmwareBundles in Resources */,
+				8A01A60D1B4872BF0010F111 /* movebss.sh in Resources */,
 				8AFF99DF1B46F6EC00A360E4 /* xpwntool in Resources */,
 				8AFF99DB1B46F6EC00A360E4 /* idevicerestore in Resources */,
 				8AFF99DD1B46F6EC00A360E4 /* shsh in Resources */,
@@ -453,6 +457,7 @@
 				8AFF99C71B463D0700A360E4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8AFF99C81B463D0700A360E4 /* Build configuration list for PBXNativeTarget "OTA-d0wnTests" */ = {
 			isa = XCConfigurationList;
@@ -461,6 +466,7 @@
 				8AFF99CA1B463D0700A360E4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

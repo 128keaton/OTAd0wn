@@ -89,7 +89,9 @@
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
           _progess.floatValue = 1;
         
-        [task launch];
+     //   [task launch];
+        [self fetchBlobs];
+
         NSFileHandle * read = [out fileHandleForReading];
         
         NSData * dataRead = [read readDataToEndOfFile];
@@ -101,8 +103,7 @@
             
             
         }else{
-            [self fetchBlobs];
-         
+            
             
         }
 
@@ -146,7 +147,7 @@
     
   
     downgradeButton.enabled = NO;
-    statusLabel.stringValue = @"Fetching blobs IPSW";
+    
   dispatch_async(dispatch_get_main_queue(), ^{
         
         
@@ -191,42 +192,40 @@
 
 -(void)makeiBSS{
     NSTask *task = [[NSTask alloc] init];
+
     
+
+
     
-    NSString *str=[[NSBundle mainBundle] resourcePath];
-    
-    NSLog(@"stuff path: %@", str);
-    
-    // [task setCurrentDirectoryPath:[NSString stringWithFormat:@"../..%@/", [defaults objectForKey:@"tool"]]];
+
     NSLog(@"working dir: %@", [task currentDirectoryPath] );
-    //     task.launchPath = [NSString stringWithFormat:@"%@/ipsw", [defaults objectForKey:@"tool"]];
-    
-    
+
  
  
+    NSFileManager *fileManager = [NSFileManager defaultManager];
     
     
-    [task setLaunchPath:[NSString stringWithFormat:@"%@/xpwntool", [[NSBundle mainBundle]resourcePath]]];
-    task.arguments  = @[ @" `unzip -j ./custom_firmware.ipsw 'Firmware/dfu/iBSS*' | awk '/inflating/{print $2}'`",@"pwnediBSS"];
     
-    for (NSString *validArgument in [task arguments]) {
-        NSLog(@"%@", validArgument);
+    if (![fileManager fileExistsAtPath:[[task currentDirectoryPath] stringByAppendingString:@"/custom_firmware.ipsw"]]){
+        [fileManager copyItemAtPath:[defaults objectForKey:@"firmwarePath"] toPath:[task currentDirectoryPath] error:nil];
     }
+    
+    NSString *firmwarePath = [NSString stringWithFormat:@"%@/custom_firmware.ipsw", [[NSBundle mainBundle] resourcePath]];
+    NSString *junkPath = [NSString stringWithFormat:@"%@/bss", [[NSBundle mainBundle]resourcePath]];
+  
+    
+    [task setLaunchPath:@"/usr/bin/unzip"];
+    task.arguments  = @[firmwarePath, @"-d",  junkPath];
+   
+    
     NSPipe * out = [NSPipe pipe];
     [task setStandardOutput:out];
     
-    statusLabel.stringValue = @"Making pwned iBSS";
+    statusLabel.stringValue = @"Unzipping Firmware";
     [task setCurrentDirectoryPath:[[NSBundle mainBundle]resourcePath]];
     downgradeButton.enabled = NO;
     
-    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-        
-        
-        [task launch];
-        
-        
-        
-    });
+    [task launch];
     _progess.floatValue = 3;
     NSFileHandle * read = [out fileHandleForReading];
     
@@ -251,7 +250,7 @@
             downgradeButton.enabled = YES;
               _progess.floatValue = 3;
           
-            [self sendiBSS];
+            [self pwniBSS];
         }
     }
 
@@ -259,40 +258,52 @@
     
 }
 
--(void)sendiBSS{
+-(void)pwniBSS{
     NSTask *task = [[NSTask alloc] init];
     
     
-    NSString *str= @"/usr/bin/scp";
     
     
+    [task setCurrentDirectoryPath:[[NSBundle mainBundle]resourcePath]];
     
-    // [task setCurrentDirectoryPath:[NSString stringWithFormat:@"../..%@/", [defaults objectForKey:@"tool"]]];
     NSLog(@"working dir: %@", [task currentDirectoryPath] );
-    //     task.launchPath = [NSString stringWithFormat:@"%@/ipsw", [defaults objectForKey:@"tool"]];
     
-  
     
-    [task setLaunchPath:str];
-    task.arguments  = @[];
+    NSString *iBSS;
+     NSString *junkPath = [NSString stringWithFormat:@"%@/bss/Firmware/dfu/", [[NSBundle mainBundle]resourcePath]];
+    
+    NSFileManager *fileManager = [NSFileManager new];
+    
+    for(NSString *item in [fileManager contentsOfDirectoryAtPath:junkPath error:nil]) {
+        if ([item containsString:@"iBSS"]) {
+            iBSS = item;
+        }
+    }
+    
+    
+
+
+    iBSS = [NSString stringWithFormat:@"%@/bss/Firmware/DFU/%@", [[NSBundle mainBundle]resourcePath], iBSS];
+        NSLog(@"iBSS path: %@", iBSS);
+    NSString *toolPath = [NSString stringWithFormat:@"%@/xpwntool", [[NSBundle mainBundle]resourcePath]];
+    NSString *fullArgument = [NSString stringWithFormat:@"\"cd / && %@ %@ %@/pwnediBSS\"", toolPath, iBSS, [[NSBundle mainBundle]resourcePath]];
+    
+    NSString *scriptPath = [NSString stringWithFormat:@"%@/movebss.sh", [[NSBundle mainBundle]resourcePath]];
+    
+    [task setLaunchPath:@"/bin/sh"];
+    task.arguments  = @[@"-c", scriptPath];
+    
     
     NSPipe * out = [NSPipe pipe];
     [task setStandardOutput:out];
     
-    
+    statusLabel.stringValue = @"Making pwned iBSS";
 
-    
     downgradeButton.enabled = NO;
     
-    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-        
-        
-  //      [task launch];
-        
-        
-        
-    });
+    [task launch];
     
+    _progess.floatValue = 4;
     NSFileHandle * read = [out fileHandleForReading];
     
     NSData * dataRead = [read readDataToEndOfFile];
@@ -304,24 +315,76 @@
     if(isRange.location == 0) {
         self.thanksLabel.stringValue = @"Error: unknown device connected";
         downgradeButton.enabled = YES;
-       
+        
     } else {
         NSRange isSpacedRange = [stringRead rangeOfString:@" ERROR: Unable " options:NSCaseInsensitiveSearch];
         if(isSpacedRange.location != NSNotFound) {
             self.thanksLabel.stringValue = @"Error: no device connected";
             downgradeButton.enabled = YES;
-           
+            
         }else{
-            NSLog(@"sent");
+            NSLog(@"making scp");
             downgradeButton.enabled = YES;
-            
+            _progess.floatValue = 3;
+           [self cleanup];
           
-            
         }
     }
     
     
+}
+-(void)cleanup{
+    NSTask *task = [[NSTask alloc] init];
     
+
+   NSString *junkPath = [NSString stringWithFormat:@"%@/bss/", [[NSBundle mainBundle]resourcePath]];
+  
+ 
+    
+    [task setLaunchPath:@"/bin/rm"];
+    task.arguments  = @[@"-r", junkPath];
+    
+    
+    NSPipe * out = [NSPipe pipe];
+    [task setStandardOutput:out];
+    
+    statusLabel.stringValue = @"Tidying up";
+    [task setCurrentDirectoryPath:[[NSBundle mainBundle]resourcePath]];
+    downgradeButton.enabled = NO;
+    
+    [task launch];
+    _progess.floatValue = 3;
+    NSFileHandle * read = [out fileHandleForReading];
+    
+    NSData * dataRead = [read readDataToEndOfFile];
+    NSString * stringRead = [[NSString alloc] initWithData:dataRead encoding:NSUTF8StringEncoding];
+    NSLog(@"output: %@", stringRead);
+    
+    
+    NSRange isRange = [stringRead rangeOfString:@" error: cannot open infile " options:NSCaseInsensitiveSearch];
+    if(isRange.location == 0) {
+        self.thanksLabel.stringValue = @"Error: unknown device connected";
+        downgradeButton.enabled = YES;
+        
+    } else {
+        NSRange isSpacedRange = [stringRead rangeOfString:@" ERROR: Unable " options:NSCaseInsensitiveSearch];
+        if(isSpacedRange.location != NSNotFound) {
+            self.thanksLabel.stringValue = @"Error: no device connected";
+            downgradeButton.enabled = YES;
+            
+        }else{
+            NSLog(@"making scp");
+            downgradeButton.enabled = YES;
+            _progess.floatValue = 5;
+            [whatAreWeDoing stopAnimation:nil];
+            whatAreWeDoing.hidden = YES;
+            statusLabel.stringValue = @"Done";
+            self.downgradeButton.stringValue = @"Restart";
+            
+            
+        }
+    }
+
 }
 
 
