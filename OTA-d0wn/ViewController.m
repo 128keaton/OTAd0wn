@@ -57,7 +57,7 @@
 - (IBAction)downgradeDevice:(id)sender {
     NSTask *task = [[NSTask alloc] init];
  
-    
+    [task setCurrentDirectoryPath:[[NSBundle mainBundle]resourcePath]];
     NSString *str=[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"ipsw"];
     
     [whatAreWeDoing startAnimation:nil];
