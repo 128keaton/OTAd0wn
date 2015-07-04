@@ -322,11 +322,6 @@
     
 }
 
-- (IBAction)expandLog:(id)sender {
-    NSRect mainScreenRect = [[NSScreen mainScreen]frame];
-    CGFloat screenHeight = mainScreenRect.size.height;
-
-}
 
 
 
