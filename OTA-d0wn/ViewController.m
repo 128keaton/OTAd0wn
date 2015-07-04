@@ -33,6 +33,9 @@
     if ([defaults objectForKey:@"firmware"] != nil) {
         firmwareField.stringValue = [defaults objectForKey:@"firmware"];
     }
+    
+
+        
     // Do any additional setup after loading the view.
 }
 
@@ -89,9 +92,10 @@
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
           _progess.floatValue = 1;
         
-        [task launch];
+       // [task launch];
   
-
+        [self fetchBlobs];
+        
         NSFileHandle * read = [out fileHandleForReading];
         
         NSData * dataRead = [read readDataToEndOfFile];
@@ -103,8 +107,7 @@
             
             
         }else{
-            [self fetchBlobs];
-            
+   
         }
 
    
