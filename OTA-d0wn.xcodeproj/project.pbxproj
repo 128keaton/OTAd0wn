@@ -13,6 +13,13 @@
 		8AFF99B31B463D0700A360E4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8AFF99B21B463D0700A360E4 /* Images.xcassets */; };
 		8AFF99B61B463D0700A360E4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8AFF99B41B463D0700A360E4 /* Main.storyboard */; };
 		8AFF99C21B463D0700A360E4 /* OTA_d0wnTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFF99C11B463D0700A360E4 /* OTA_d0wnTests.m */; };
+		8AFF99D31B465EAF00A360E4 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFF99D21B465EAF00A360E4 /* MBProgressHUD.m */; };
+		8AFF99DA1B46F6EC00A360E4 /* FirmwareBundles in Resources */ = {isa = PBXBuildFile; fileRef = 8AFF99D41B46F6EC00A360E4 /* FirmwareBundles */; };
+		8AFF99DB1B46F6EC00A360E4 /* idevicerestore in Resources */ = {isa = PBXBuildFile; fileRef = 8AFF99D51B46F6EC00A360E4 /* idevicerestore */; };
+		8AFF99DC1B46F6EC00A360E4 /* ipsw in Resources */ = {isa = PBXBuildFile; fileRef = 8AFF99D61B46F6EC00A360E4 /* ipsw */; };
+		8AFF99DD1B46F6EC00A360E4 /* shsh in Resources */ = {isa = PBXBuildFile; fileRef = 8AFF99D71B46F6EC00A360E4 /* shsh */; };
+		8AFF99DE1B46F6EC00A360E4 /* version.xml in Resources */ = {isa = PBXBuildFile; fileRef = 8AFF99D81B46F6EC00A360E4 /* version.xml */; };
+		8AFF99DF1B46F6EC00A360E4 /* xpwntool in Resources */ = {isa = PBXBuildFile; fileRef = 8AFF99D91B46F6EC00A360E4 /* xpwntool */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +45,14 @@
 		8AFF99BB1B463D0700A360E4 /* OTA-d0wnTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "OTA-d0wnTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8AFF99C01B463D0700A360E4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8AFF99C11B463D0700A360E4 /* OTA_d0wnTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OTA_d0wnTests.m; sourceTree = "<group>"; };
+		8AFF99D11B465EAF00A360E4 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		8AFF99D21B465EAF00A360E4 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		8AFF99D41B46F6EC00A360E4 /* FirmwareBundles */ = {isa = PBXFileReference; lastKnownFileType = folder; path = FirmwareBundles; sourceTree = "<group>"; };
+		8AFF99D51B46F6EC00A360E4 /* idevicerestore */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = idevicerestore; sourceTree = "<group>"; };
+		8AFF99D61B46F6EC00A360E4 /* ipsw */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = ipsw; sourceTree = "<group>"; };
+		8AFF99D71B46F6EC00A360E4 /* shsh */ = {isa = PBXFileReference; lastKnownFileType = folder; path = shsh; sourceTree = "<group>"; };
+		8AFF99D81B46F6EC00A360E4 /* version.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = version.xml; sourceTree = "<group>"; };
+		8AFF99D91B46F6EC00A360E4 /* xpwntool */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = xpwntool; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,10 +94,12 @@
 		8AFF99A71B463D0700A360E4 /* OTA-d0wn */ = {
 			isa = PBXGroup;
 			children = (
+				8AFF99D01B465E5900A360E4 /* HUD */,
 				8AFF99AA1B463D0700A360E4 /* AppDelegate.h */,
 				8AFF99AB1B463D0700A360E4 /* AppDelegate.m */,
 				8AFF99AF1B463D0700A360E4 /* ViewController.h */,
 				8AFF99B01B463D0700A360E4 /* ViewController.m */,
+				8AFF99E01B46F7D000A360E4 /* OdysseusOTA */,
 				8AFF99B21B463D0700A360E4 /* Images.xcassets */,
 				8AFF99B41B463D0700A360E4 /* Main.storyboard */,
 				8AFF99A81B463D0700A360E4 /* Supporting Files */,
@@ -114,6 +131,28 @@
 				8AFF99C01B463D0700A360E4 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8AFF99D01B465E5900A360E4 /* HUD */ = {
+			isa = PBXGroup;
+			children = (
+				8AFF99D11B465EAF00A360E4 /* MBProgressHUD.h */,
+				8AFF99D21B465EAF00A360E4 /* MBProgressHUD.m */,
+			);
+			name = HUD;
+			sourceTree = "<group>";
+		};
+		8AFF99E01B46F7D000A360E4 /* OdysseusOTA */ = {
+			isa = PBXGroup;
+			children = (
+				8AFF99D41B46F6EC00A360E4 /* FirmwareBundles */,
+				8AFF99D51B46F6EC00A360E4 /* idevicerestore */,
+				8AFF99D61B46F6EC00A360E4 /* ipsw */,
+				8AFF99D71B46F6EC00A360E4 /* shsh */,
+				8AFF99D81B46F6EC00A360E4 /* version.xml */,
+				8AFF99D91B46F6EC00A360E4 /* xpwntool */,
+			);
+			name = OdysseusOTA;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -198,6 +237,12 @@
 			files = (
 				8AFF99B31B463D0700A360E4 /* Images.xcassets in Resources */,
 				8AFF99B61B463D0700A360E4 /* Main.storyboard in Resources */,
+				8AFF99DA1B46F6EC00A360E4 /* FirmwareBundles in Resources */,
+				8AFF99DF1B46F6EC00A360E4 /* xpwntool in Resources */,
+				8AFF99DB1B46F6EC00A360E4 /* idevicerestore in Resources */,
+				8AFF99DD1B46F6EC00A360E4 /* shsh in Resources */,
+				8AFF99DE1B46F6EC00A360E4 /* version.xml in Resources */,
+				8AFF99DC1B46F6EC00A360E4 /* ipsw in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -218,6 +263,7 @@
 				8AFF99B11B463D0700A360E4 /* ViewController.m in Sources */,
 				8AFF99AE1B463D0700A360E4 /* main.m in Sources */,
 				8AFF99AC1B463D0700A360E4 /* AppDelegate.m in Sources */,
+				8AFF99D31B465EAF00A360E4 /* MBProgressHUD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
