@@ -34,7 +34,14 @@
         firmwareField.stringValue = [defaults objectForKey:@"firmware"];
     }
     
-
+    NSString *script = [[[NSBundle mainBundle]resourcePath] stringByAppendingString:@"/movebss.sh"];
+    // At this point, we have already checked if script exists and has a shebang
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    if (![fileManager isExecutableFileAtPath:script]) {
+        NSArray *chmodArguments = [NSArray arrayWithObjects:@"a+x", script, nil];
+        NSTask *chmod = [NSTask launchedTaskWithLaunchPath:@"/bin/chmod" arguments:chmodArguments];
+        [chmod waitUntilExit];
+    }
         
     // Do any additional setup after loading the view.
 }
